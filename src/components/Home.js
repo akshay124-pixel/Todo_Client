@@ -32,7 +32,7 @@ function Home() {
 
   const adddata = async () => {
     try {
-      await axios.post("http://localhost:4000/api/add", data);
+      await axios.post(`${process.env.REACT_APP_URL}/api/add`, data);
       console.log("Data added successfully");
       getdata();
       setData({ name: "", email: "" });
@@ -43,7 +43,7 @@ function Home() {
 
   const editdata = async (_id, updatedData) => {
     try {
-      await axios.put(`http://localhost:4000/api/update/${_id}`, updatedData);
+      await axios.put(`${process.env.REACT_APP_URL}/api/update/${_id}`, updatedData);
       console.log("Edit updated successfully");
       getdata();
     } catch (error) {
@@ -52,7 +52,7 @@ function Home() {
   };
   const getdata = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/get");
+      const response = await axios.get(`${process.env.REACT_APP_URL}/api/get`);
       setResult(response.data.data);
       setAllData(response.data.data);
       console.log("Data fetched successfully");
@@ -66,7 +66,7 @@ function Home() {
 
   const deletedata = async (_id) => {
     try {
-      await axios.delete(`http://localhost:4000/api/delete/${_id}`);
+      await axios.delete(`${process.env.REACT_APP_URL}/api/delete/${_id}`);
       console.log("Data deleted successfully");
       getdata();
     } catch (error) {
